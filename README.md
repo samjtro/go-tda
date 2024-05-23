@@ -3,20 +3,21 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/samjtro/go-tda)](https://goreportcard.com/report/github.com/samjtro/go-tda)
 [![License](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](LICENSE)
 
-Latest: [v0.8.3](https://github.com/samjtro/go-tda/tree/main) | Stable*: [v0.8.3](https://github.com/samjtro/go-tda/tree/stable)
-- *(Suggested Pre-v1.0.0)
-
 ## 2024 update
 
 Schwab purchased the ameritrade product from TD, and thus made this project deprecated. i have moved my go implementation of the new Schwab api to [go-trade](https://github.com/samjtro/go-trade), and after i finish that i will be using that repo to create hooks into a number of other brokerage apis.
 
-this repo is archived as it still serves a purpose - if you had a developer app with td ameritrade, their endpoints are still fully functional. thus, you can still use this repo exactly as before. cheers.
+this repo is archived as it still serves a purpose - if you had a developer app with td ameritrade, their endpoints are still fully functional. thus, you can still use this repo exactly as before.
+
+happy trading!
 
 ## what is this project?
 
 this is a go implementation of a td-ameritrade API hook. the goal of this project is to incentivize others to build algorithmic trading models on top of these packages. the purpose for this projects existence is really speed; a lot of td-ameritrade hooks are built in Python, which is fine, but they are so unbelievably slow. when you have to wait multiple seconds to make a request, you know it's bad. we have built an incredibly light handler function that routes all calls in the library, making speeds predictable and lightning fast. this, on top of well optimized and efficient Marshaling of JSON to custom Structs, means that you can make up to 15 requests per second if you wish.
 - the average response times for all functions in this library is 152ms (weighted average of over 100,000 test requests)
 - a light function like RealTime can achieve request times as low as 80ms
+
+built entirely by [@samjtro](https://github.com/samjtro).
 
 ## how can i use this project?
 
@@ -34,7 +35,7 @@ this is a go implementation of a td-ameritrade API hook. the goal of this projec
 
 ```
 APIKEY=Your_APIKEY_Here
-UTC_DIFF=+0:00 // This is a placeholder; for MST, you would use -06:00, etc. It is your Difference from UTC time
+UTC_DIFF=+00:00 // Your difference from UTC time. ex: For MST, you would use -06:00.
 ```
 
 3. `go get github.com/samjtro/go-tda`
@@ -48,9 +49,6 @@ UTC_DIFF=+0:00 // This is a placeholder; for MST, you would use -06:00, etc. It 
 - `movers`: contains `Get`; returns a list of movers for the day by index & direction
 - `option`: contains `Single`; returns Option Chains of your desired parameters
 - `instrument`: contains `Fundamental` & `Get`; returns information on a desired ticker or CUSIP
-- `account` will contain account monitoring and trading functions but is not functional as of right now   
-
-if you still have a question about something after checking the go reference and code samples, or something isn't quite working right, either file an issue or a pull request on the repo OR send me an email @ samjtro@proton.me
 
 ### code samples
 
